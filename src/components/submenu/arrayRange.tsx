@@ -1,30 +1,31 @@
 import React, { Component } from "react";
 import { Label } from "reactstrap";
 
-class ArrayRange extends Component {
-  state = {
-    currentRangeValue: 20,
-  };
+type Props = {
+  crv: number;
+  hrc: Function;
+}
 
-  handleInputChange = (e: any) => {
-    this.setState({ currentRangeValue: e.currentTarget.value });
-  };
+
+class ArrayRange extends Component<Props> {
 
   render() {
+    const { crv,  hrc} = this.props;
+    
     return (
       <div>
         <div>
           <Label style={{ fontWeight: "bold" }} for="range">
-            There are {this.state.currentRangeValue} elements to sort
+            There are {crv} elements to sort
           </Label>
           <p>
             Sorting speed is equal to the squared amount of elements divided by second.
           </p>
           <input
-            onChange={this.handleInputChange}
+            onChange={hrc.bind(this)}
             type={"range"}
             min={5}
-            defaultValue={this.state.currentRangeValue}
+            defaultValue={crv}
             max={35}
             step={5}
             style={{ width: "100%" }}
