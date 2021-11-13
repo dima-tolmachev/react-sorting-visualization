@@ -1,15 +1,14 @@
 import React from 'react';
 import Menu from './components/menu';
 import Lines from './components/lines';
-import Footer from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 
 function App() {
   return (
-    <div>
+    <div style={{display:"flex", flexDirection:"column"}}>
       <Menu/>
       <Lines/>
-      <Footer/>
     </div>
   );
 }
