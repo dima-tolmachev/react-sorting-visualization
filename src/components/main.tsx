@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { ChangeEvent, Component } from "react";
 import Lines from "./lines";
 import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 import ArrayRange from "./submenu/arrayRange";
 import ArrayColor from "./submenu/arrayColor";
+import { ColorResult } from "react-color";
 
 class Main extends Component {
   state = {
@@ -17,12 +18,12 @@ class Main extends Component {
     });
   };
 
-  handleColorChange = (color: any) => {
+  handleColorChange = (color: ColorResult) => {
     this.setState({ color: color.hex });
   };
 
-  handleRangeChange = (e: any) => {
-    this.setState({ currentRangeValue: e.currentTarget.value });
+  handleRangeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ currentRangeValue: parseInt(e.currentTarget.value) });
   };
 
   render() {

@@ -17,13 +17,21 @@ type Props = {
 }
 
 class Lines extends Component<Props> {
+  state = {
+    consequence: generateRandomArray(this.props.cnt)
+  }
+
   render() {
     const { cnt, color } = this.props;
-    var elements: number[] = generateRandomArray(cnt);
+    const { consequence } = this.state;
+    
+    if (consequence.length !== this.props.cnt) {
+      this.setState({ consequence: generateRandomArray(cnt) })
+    };
 
     return (
       <div style={{ display: "flex", gap: "1%", height:"75vh", marginTop:"1em"}}>
-        {elements.map((val: number) => (
+        {consequence.map((val: number) => (
           <Line value={val} position={"1"} color={color} />
         ))}
       </div>
