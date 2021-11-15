@@ -14,7 +14,7 @@ class Main extends Component {
 
   toggle = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   };
 
@@ -30,39 +30,31 @@ class Main extends Component {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div>
-          <div style={{ width: "100%", marginTop: "10px" }}>
-            <div style={{ float: "left", marginLeft: "5px" }}>
+          <div style={{ width: "100%", display: "flex", marginTop: "15px" }}>
+            <div style={{ marginLeft: "1px" }}>
               <Button color="primary" onClick={this.toggle}>
                 Settings
               </Button>
             </div>
-
-            <div style={{ float: "right", marginRight: "5px" }}>
-              <Button color="success" onClick={this.toggle}>
-                Bubble
-              </Button>
-              <Button color="success" onClick={this.toggle}>
-                Quick
-              </Button>
-              <Button color="success" onClick={this.toggle}>
-                Heap
-              </Button>
-              <Button color="success" onClick={this.toggle}>
-                Merge
-              </Button>
+            <div style={{ flex: "10" }}></div>
+            <div style={{ marginRight: "15px", display: "flex" }}>              
+              
             </div>
           </div>
           <Offcanvas isOpen={this.state.isOpen}>
             <OffcanvasHeader toggle={this.toggle}>Settings</OffcanvasHeader>
             <OffcanvasBody>
-              <ArrayRange crv={this.state.currentRangeValue}  hrc={this.handleRangeChange}/>
+              <ArrayRange
+                crv={this.state.currentRangeValue}
+                hrc={this.handleRangeChange}
+              />
               <br />
-              <ArrayColor cc={this.state.color} hcc={this.handleColorChange}/>
+              <ArrayColor cc={this.state.color} hcc={this.handleColorChange} />
             </OffcanvasBody>
           </Offcanvas>
         </div>
         <div>
-          <Lines cnt={this.state.currentRangeValue} color={this.state.color}/>
+          <Lines cnt={this.state.currentRangeValue} color={this.state.color} />
         </div>
       </div>
     );
