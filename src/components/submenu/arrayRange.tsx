@@ -19,7 +19,7 @@ class ArrayRange extends Component<Props> {
             There are {crv} elements to sort
           </Label>
           <p>
-            Sorting speed is equal to the squared amount of elements divided by second.
+            Sorting speed is equal to the square of cubed amount of elements divided by second.
           </p>
           <input
             onChange={hrc.bind(this)}
