@@ -19,6 +19,8 @@ function sleep(ms: number) {
 type Props = {
   cnt: number;
   color: string;
+  cm: string;
+  gna: boolean;
 };
 
 class Lines extends Component<Props> {
@@ -156,60 +158,122 @@ class Lines extends Component<Props> {
   };
 
   render() {
-    const { cnt, color } = this.props;
+    const { cnt, color, cm, gna } = this.props;
     const { consequence } = this.state;
 
-    if (consequence.length !== this.props.cnt) {
+    if (consequence.length !== this.props.cnt || gna) {
       this.setState({ consequence: generateRandomArray(cnt) });
     }
 
-    return (
-      <div>
-        <div style={{ position: "absolute", right: "1px", top: "15px" }}>
-          <Button
-            style={{ marginRight: "5px" }}
-            color="success"
-            onClick={this.bubbleSorting}
+    if (cm === 'Selection') {
+      return (
+        <div>
+          <div style={{ position: "absolute", right: "1px", top: "15px" }}>
+            <Button
+              style={{ marginRight: "5px" }}
+              color="primary"
+              onClick={this.selectionSorting}
+            >
+               Start selection sorting
+            </Button>
+          </div>
+  
+          <div
+            style={{
+              display: "flex",
+              gap: "1%",
+              height: "75vh",
+              marginTop: "1em",
+            }}
           >
-            Bubble
-          </Button>
-          <Button
-            style={{ marginRight: "5px" }}
-            color="success"
-            onClick={this.selectionSorting}
-          >
-            Selection
-          </Button>
-          <Button
-            style={{ marginRight: "5px" }}
-            color="success"
-            onClick={this.quickSorting}
-          >
-            Quick
-          </Button>
-          <Button
-            style={{ marginRight: "5px" }}
-            color="success"
-            onClick={this.mergeSorting}
-          >
-            Merge
-          </Button>
+            {consequence.map((val: number, i: number) => (
+              <Line key={i} value={val} position={"1"} color={color} />
+            ))}
+          </div>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "1%",
-            height: "75vh",
-            marginTop: "1em",
-          }}
-        >
-          {consequence.map((val: number, i: number) => (
-            <Line key={i} value={val} position={"1"} color={color} />
-          ))}
+      );
+    } else if (cm === 'Quick') {
+      return (
+        <div>
+          <div style={{ position: "absolute", right: "1px", top: "15px" }}>
+            <Button
+              style={{ marginRight: "5px" }}
+              color="primary"
+              onClick={this.quickSorting}
+            >
+              Start quick sorting
+            </Button>
+          </div>
+  
+          <div
+            style={{
+              display: "flex",
+              gap: "1%",
+              height: "75vh",
+              marginTop: "1em",
+            }}
+          >
+            {consequence.map((val: number, i: number) => (
+              <Line key={i} value={val} position={"1"} color={color} />
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else if (cm === 'Merge') {
+      return (
+        <div>
+          <div style={{ position: "absolute", right: "1px", top: "15px" }}>
+            <Button
+              style={{ marginRight: "5px" }}
+              color="primary"
+              onClick={this.mergeSorting}
+            >
+               Start merge sorting
+            </Button>
+          </div>
+  
+          <div
+            style={{
+              display: "flex",
+              gap: "1%",
+              height: "75vh",
+              marginTop: "1em",
+            }}
+          >
+            {consequence.map((val: number, i: number) => (
+              <Line key={i} value={val} position={"1"} color={color} />
+            ))}
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <div style={{ position: "absolute", right: "1px", top: "15px" }}>
+            <Button
+              style={{ marginRight: "5px" }}
+              color="primary"
+              onClick={this.bubbleSorting}
+            >
+               Start bubble sorting
+            </Button>
+          </div>
+  
+          <div
+            style={{
+              display: "flex",
+              gap: "1%",
+              height: "75vh",
+              marginTop: "1em",
+            }}
+          >
+            {consequence.map((val: number, i: number) => (
+              <Line key={i} value={val} position={"1"} color={color} />
+            ))}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
