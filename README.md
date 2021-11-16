@@ -1,5 +1,5 @@
 # React Sorting Visualizer
-
+[Try now](https://dima-tolmachev.github.io/react-sorting-visualization/)
 
 ## List of sorting algorithms implemented for the current application:
 - [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
